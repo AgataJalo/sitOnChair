@@ -1,1 +1,330 @@
+:root{
+    --color:#24baa0;
+}
+* {
+    box-sizing: border-box;
+}
+.container{
+    max-width: 1050px;
+    margin:0 auto;
+}
+.visuallyhidden {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+    white-space: nowrap; /*żeby usunąć labele, trzeba dodać klasę taką do labeli w html*/
+}
+.section-title{
+    font-size: 22px;
+    color: #666;
+    text-transform: uppercase;
+    font-weight: 700;
+    margin-bottom: 50px;
+}
 
+.section-title::after{
+    content:"";
+    width:320px;
+    height:8px;
+    background: var(--color);
+    display: block;
+    margin-top: 5px;
+}
+
+
+body{
+    font-family:'Raleway', sans-serif;
+}
+.page-header{
+    height: 40px;
+    background:#000000;
+    position: relative;;
+    z-index: 1000; /*żeby menu sie wysuwało i żeby dało się na nie kliknąć*/
+}
+.page-header .container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 40px; /*żeby wyśrodkować*/
+}
+.page-logo{
+    margin: 0;
+    display: flex;
+    align-items: center; /*żeby wyśrodkowac*/
+}
+.page-logo-link{
+    text-transform: uppercase;
+    font-size: 14px;
+    color: white;
+    text-decoration: none;
+    height: 100% /*żeby wyśrodkować*/
+}
+
+.page-logo-link span{
+    color: var(--color);
+}
+.page-nav{}
+.page-nav-list{
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.page-nav-list-el{
+    position:relative;
+    height: 40px;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+.page-nav-list-link{
+    text-transform: uppercase;
+    font-size: 14px;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 10px 25px;
+    transition: 0.3s color; /* przejście między guzikami menu*/
+}
+.page-nav-list-link:hover{
+    color: var(--color); /*żeby jak kliknę było zielone*/
+}
+
+.page-nav-sublist {
+    background: black;
+    position: absolute;
+    top: calc(100% + 12px);
+    left: 50%;
+    transform: translate(-50%);
+    margin:0;
+    padding:10px 15px;
+    list-style: none;
+    opacity: 0; /*że lista się wysuwa*/
+    visibility: hidden;
+    transition: 0.3s opacity;
+}
+
+.page-nav-list-el:hover .page-nav-sublist{ /*lista się wysuwa*/
+    opacity:1;
+    visibility: visible;
+}
+.page-nav-sublist::before{
+    content: "";
+    width:0;
+    height:0;
+    border: 10px solid transparent;
+    border-bottom-color: black;
+    position: absolute;
+    top: -20px;
+    left: 50%; /*środkuje do rodzica*/
+    transform: translate(-50%); /*środkuje element*/
+}
+
+.page-nav-sublist::after{  /*żeby nie było miejsca obok strzałki i nie znikała nam lista*/
+    content:"";
+    width:100%;
+    height: 12px;
+    background: transparent;
+    position:absolute;
+    left:0;
+    top:-12px;
+}
+.page-nav-sublist-el{}
+.page-nav-sublist-link{
+    color: white;
+    text-decoration: none;
+    padding: 3px;
+    display: block;
+}
+
+.main-slider-bg{
+    background: linear-gradient(#fff, #ddd);
+}
+.slider{
+    height: 500px;
+    display:flex; /*są obok siebie strzałki*/
+}
+.slider-prev,
+.slider-next{
+    width: 90px;
+    border: 0;
+    background: none;
+    color: var(--color);
+    font-size: 60px;
+    cursor: pointer; /*są łapki jak klikam*/
+    outline: none; /*nie ma ramki jak klikam*/
+}
+
+.slider-prev:focus,
+.slider-next:focus {
+    color: black;
+}
+
+.slider-next{
+    order:1; /*dzięki temu strzałki są rozdzielone*/
+}
+.slider-slides{
+    flex-grow: 1; /*dzięki temu strzałki są rozdzielone*/
+    position:relative;
+}
+
+.slider-slide{
+    position:absolute; /*zeby slajdy były obok siebie*/
+    top:0;
+    left:0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: 1s opacity;
+}
+.slider-slide-active{
+    opacity: 1;
+    z-index: 1; /*żeby 1 była 1 */
+}
+
+.form{
+    display:flex;
+    justify-content: space-between;
+}
+.form-left{
+    width:635px;
+}
+.form-right{
+    width: 340px;
+}
+.form-row{
+    margin-bottom: 30px;
+}
+/*input który ma type tekst*/
+.form input[type="text"],
+.form input[type="email"],
+.form textarea {
+    height: 65px;
+    border: 1px solid var(--color);
+    width:100%;
+    padding: 0 15px;
+    font-size: 33px;
+    font-weight: 200;
+    outline: none;
+}
+.form input[type="text"]:focus,
+.form input[type="email"]:focus,
+.form textarea:focus{
+    box-shadow: inset 0 0 0 1px var(--color);
+}
+
+.form input[type="text"]::placeholder,
+.form input[type="email"]::placeholder,
+.form textarea::placeholder{
+    color: #aaa;
+}
+
+.form textarea{
+    height:190px;
+    padding: 15px;
+    resize: none;
+}
+
+.form-img{
+    height: 210px;
+    background: url(../images/red_chair.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    margin-top: -30px;
+}
+
+.form-checkbox{
+    display:flex;
+    cursor: pointer;
+    align-items: center;
+    margin: 35px 0 40px;
+}
+.form-checkbox input{
+}
+.form-checkbox input + .form-checkbox-mark{
+    width:48px;
+    height: 48px;
+    border: 1px solid var(--color);
+    display: block;
+    flex-shrink: 0;
+    margin-right: 10px;
+
+}
+.form-checkbox input:checked + .form-checkbox-mark{
+    background: url(../images/form_ok.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+
+}
+
+.form-checkbox-text{
+    color: #aaa;
+}
+
+.btn{
+    background: var(--color);
+    color: white;
+    border-radius: 5px;
+    border: 0;
+    padding: 5px 15px;
+    text-transform: uppercase;
+    cursor: pointer;
+    display: inline-block;
+}
+
+.btn:hover{
+    background: #259c81;
+}
+.form-submit{
+    font-size: 34px;
+    font-weight: bold;
+    height: 70px;
+    width: 100%;
+}
+
+.footer{
+    padding: 20px;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.footer-right {
+    display: flex;
+    justify-content: space-between;
+}
+
+.copyright {
+    color:  #aaa;
+}
+
+.social-media {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.social-media a {
+    display: inline-block;
+    height: 60px;
+    margin: 4px;
+}
+
+p.footer-logo-p {
+    color: #aaa;
+    font-size: 20px;
+    font-weight: 500;
+    text-transform: uppercase;
+    display: block;
+}
+
+.footer-span {
+    font-weight: 700;
+}
